@@ -3,9 +3,39 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 
-<title>Pantalla principal</title>
+	<title>Pantalla principal</title>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
 </h:head>
 <h:body>
-	Bienvenido al Himalaya
+	Bienvenido al Himalaya mis Devs 
+	
+	<h:dataTable id="tblEmpleados" var="empleado" value="#{principalController.empleados}" headerClass="headerTable" rowClasses="rawTable rowTableLine">
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			<h:outputText value="#{empleado.nombre}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Primer Apellido</f:facet>
+			<h:outputText value="#{empleado.primerApellido}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Segundo Apellido</f:facet>
+			<h:outputText value="#{empleado.segundoApellido}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Puesto</f:facet>
+			<h:outputText value="#{empleado.puesto}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Estatus</f:facet>
+			<h:outputText value="Habilitado!" rendered="#{empleado.estatus}" />
+			<h:outputText value="Deshabilitado" rendered="#{!empleado.estatus}"/>
+		</h:column>
+	</h:dataTable>
+
+
 </h:body>
 </html>
