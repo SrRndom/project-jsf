@@ -1,29 +1,45 @@
 <!-- Para funcionalidades Extra se usa estos elementos f  -->
 <!-- Para funcionalidades componentes se usa estos elementos h -->
+<!-- Para funcionalidades de primefaces se usa estos elementos p -->
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 
 <h:body>
-
-	<h:form id="formLogin">
-		<h:panelGrid columns="2">
-
-			<h:outputLabel value="Usuario: *" styleClass="colorText"/>
-			<h:inputText id="txtUsuario" value="#{loginController.usuario}" required="true" requiredMessage="Se nececita un Usuario" />
+	<div class="ui-fluid">
+		<h:form id="formLogin">
+		
+		<p:growl id="growl" />
+		
+			<p:panel id="pnlLogin" header="Inicio de Sesion" style="text-align: center">
 			
-			<h:outputLabel value="Contrasena: *" styleClass="colorText"></h:outputLabel>
-			<h:inputSecret id="txtPassword" value="#{loginController.password}" required="true" requiredMessage="Se nececita una Contrasena"></h:inputSecret>
+				<p:graphicImage name="images/falloutWedding.webp" width="20%"/>
 			
-			<h:commandButton value="Entrar" action="#{loginController.ingresar}"></h:commandButton>
+				<p:panelGrid  id="pnlGridLogin" columns="1" layout="grid"
+					columnClasses="col-12 md:col-3 xl:col-2, col-12 md:col-9 xl:col-4, col-12 md:col-12 xl:col-2, col-12 md:col-9 xl:col-4"
+					styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
-		</h:panelGrid>
-	</h:form >
+					<p:outputLabel value="Usuario: " styleClass="colorText" for="txtUsuario" style="float: left" />
+					<p:inputText id="txtUsuario" value="#{loginController.usuario}"
+						required="true" requiredMessage="Se nececita un Usuario" />
 
+					<p:outputLabel value="Contrasena: " styleClass="colorText" for="txtPassword" style="float: left" />
+					<p:password id="txtPassword" value="#{loginController.password}"
+						required="true" requiredMessage="Se nececita una Contrasena" />
+
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton value="Entrar"
+						action="#{loginController.ingresar}" update="pnlGridLogin, growl" />
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</div>
 </h:body>
 
 </html>
